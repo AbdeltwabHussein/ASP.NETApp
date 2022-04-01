@@ -1,0 +1,35 @@
+﻿@model webApp00.BL.Model.DepartmentVM
+@{
+    ViewData["Title"] =SharedLocalizer["Details"];
+}
+
+<h2>@SharedLocalizer["Details"]</h2>
+
+
+<br />
+<a asp-action="Index" asp-controller="Dep" class="btn btn-primary">@SharedLocalizer["btd"]</a>
+<a asp-action="Edit" asp-controller="Dep" asp-route-Id="@Model.Id" class="btn btn-success">@SharedLocalizer["Edit"]</a>
+
+<br />
+<br />
+
+<form class="form-group" asp-action="Details" asp-controller="Dep">
+
+    <br /><br />
+          <label asp-for="Id">@SharedLocalizer["Id"] </label>
+    <input type="text" asp-for="Id" disabled />
+
+    <label asp-for="DepartmentName">@SharedLocalizer["dc"]</label>
+    <input type="text" asp-for="DepartmentName" disabled />
+
+    <br />
+
+    <label asp-for="Departmentcode">@SharedLocalizer["dc"]</label>
+    <input type="text" asp-for="Departmentcode" disabled />
+
+    <br />
+
+
+
+
+</form>

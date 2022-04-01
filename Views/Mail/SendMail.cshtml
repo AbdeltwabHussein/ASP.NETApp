@@ -1,0 +1,37 @@
+﻿    
+@{
+    ViewData["Title"] = "SendMail";
+    Layout = "~/Views/myLayout.cshtml";
+}
+
+<h2>SendMail</h2>
+
+<input type="hidden" id="x"value="@TempData["Message"]"/>
+
+<form class="form-group" asp-controller="Mail" asp-action="SendMail">
+    <label>Title</label>
+    <input type="text" class="form-control"  name="Title"/>
+    <br />
+
+    <label>Message</label>
+    <textarea class="form-control" rows="4" name="Msg"></textarea>
+    <br />
+    
+    <center>
+        <input type="submit" value="Send" class="btn btn-primary" />
+        <input type="reset" value="Cancel" class="btn btn-danger" />
+
+    </center>
+</form>
+
+
+@section DataTable{
+<script>
+    $(function () {
+        var data = $("#x").val();
+        if (data != "") {
+            alert(data);
+        }
+    });
+</script>
+}

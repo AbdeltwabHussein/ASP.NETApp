@@ -1,0 +1,62 @@
+﻿@model webApp00.BL.Model.EmployeeVM
+@{
+    ViewData["Title"] =SharedLocalizer["Delete"];
+}
+
+<h2> @SharedLocalizer["Delete"]</h2>
+
+
+<br />
+<a asp-action="Index" asp-controller="Emp" class="btn btn-primary">Back To Employee</a>
+<br />
+<br />
+
+<form class="form-group" asp-action="Delete" asp-controller="Emp">
+
+
+    <input type="hidden" asp-for="Id" />
+
+    <label asp-for="EmployeeName"> @SharedLocalizer["en"]</label>
+    <input type="text" class="form-control" asp-for="EmployeeName" disabled />
+
+    <br />
+
+    <label asp-for="Email"> @SharedLocalizer["ee"]</label>
+    <input type="text" class="form-control" asp-for="Email" disabled />
+
+    <br />
+    <label asp-for="Salary"> @SharedLocalizer["Delete"]es  </label>
+    <input type="text" class="form-control" asp-for="Salary" disabled />
+
+    <br />
+    <label asp-for="Email"> @SharedLocalizer["ec"]</label>
+    <input type="text" class="form-control" asp-for="Email" disabled />
+
+    <br />
+    <label asp-for="HireDate">@SharedLocalizer["ehd"]</label>
+    <input type="text" class="form-control" asp-for="HireDate" disabled />
+
+    <br />
+    <label asp-for="Notes">@SharedLocalizer["eNotes"]</label>
+    <textarea class="form-control" asp-for="Notes" disabled></textarea>
+
+    <br />
+    <div class=" demo-checkbox">
+        <input type="checkbox" asp-for="IsAcive" disabled />
+        <label asp-for="IsAcive">@SharedLocalizer["ea"]</label>
+    </div>
+    <br />
+    <label asp-for="DepartmentId">@SharedLocalizer["Department"]</label>
+        <select asp-for="DepartmentId" asp-items="(SelectList)ViewBag.DprtmntList"disabled></select>
+
+    @*<label asp-for="Department.DepartmentName">Employee Department Name</label>
+    <input type="text" class="form-control" asp-for="Department.DepartmentName" disabled />*@
+
+    <br />
+    <br />
+    <center>
+        <input type="submit" value="@SharedLocalizer["Delete"]" class="btn btn-primary" />
+    </center>
+
+
+</form>

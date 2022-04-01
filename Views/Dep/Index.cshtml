@@ -1,0 +1,92 @@
+﻿@model IEnumerable<webApp00.BL.Model.DepartmentVM>
+@{
+    ViewBag.Title = SharedLocalizer["Department"];
+}
+<link href="~/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+<style>
+    th {
+        text-align: center !important;
+    }
+</style>
+<h2>@SharedLocalizer["wtd"]</h2>
+
+@*<center>
+            <h1>@ViewData["x"]</h1>
+            <h1>@ViewBag.y</h1>
+            <h1>@TempData["z"]</h1>
+    </center>*@
+
+
+@*<ul>
+        @foreach (var item in ViewBag.data)
+        {
+            <li>@item</li>
+        }
+    </ul>*@
+
+
+@*Country
+    <select>
+        <option>Choose Country</option>
+        @foreach (var item in ViewBag.data)
+        {
+            <option>@item</option>
+        }
+    </select>*@
+
+
+
+@*<table>
+        <tr>
+            <th>Country</th>
+        </tr>
+        @foreach (var item in ViewBag.data)
+        {
+             <tr>
+                 <td>@item</td>
+             </tr>
+        }
+    </table>*@
+
+<br />
+<a asp-action="Create" asp-controller="Dep" class="btn btn-primary">@SharedLocalizer["cnd"]</a>
+<br />
+<br />
+
+<form asp-action="Index" asp-controller="Dep" class="form-group">
+
+    <div class="row">
+        <div class="col-lg-10">
+            <input type="text" placeholder="@SharedLocalizer["sdn"]" class="form-control" name="SearchValue" />
+        </div>
+        <div class="col-lg-2">
+            <input type="submit" value="@SharedLocalizer["Search"]" class="btn btn-success" />
+        </div>
+    </div>
+</form>
+
+<table class="table table-bordered table-striped table-hover text-center font-weight-bold">
+    <tr class="thead-dark">
+        <th>@SharedLocalizer["Id"]</th>
+        <th>@SharedLocalizer["DepartmentName"]</th>
+        <th>@SharedLocalizer["dc"]</th>
+        <th>@SharedLocalizer["Updata"]</th>
+        <th>@SharedLocalizer["Remove"]</th>
+        <th>@SharedLocalizer["Details"]</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.DepartmentName</td>
+            <td>@item.Departmentcode</td>
+            <td><a asp-action="Edit" asp-controller="Dep" class="btn btn-success" asp-route-Id="@item.Id">@SharedLocalizer["Updata"]</a></td>
+            <td><a asp-action="Delete" asp-controller="Dep" class="btn btn-danger" asp-route-Id="@item.Id">@SharedLocalizer["Delete"]</a></td>
+            <td><a asp-action="Details" asp-controller="Dep" class="btn btn-info" asp-route-Id="@item.Id">@SharedLocalizer["Details"]</a></td>
+        </tr>
+    }
+</table>
+
+@*<script src="~/plugins/jquery/jquery.js"></script>
+    <script src="~/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>*@

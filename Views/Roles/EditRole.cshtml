@@ -1,0 +1,90 @@
+﻿@using Microsoft.AspNetCore.Identity;
+
+@*لان هنا هستقبل رول وحدة  IEnumerable<IdentityRole>
+    وليس  IdentityRole استقبلت هنا*@
+
+@model IdentityRole
+@{
+    ViewData["Title"] = "EditRole";
+}
+
+<h2>EditRole</h2>
+
+<br />
+<a asp-action="Index" asp-controller="Roles" class="btn btn-primary">Back to roles </a>
+<br />
+<br />
+
+<form class="form-group" asp-action="EditRole" asp-controller="Roles">
+    <br /><br />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <br /><br />
+
+    <label asp-for="Id">Id</label>
+    <input type="text" readonly class="form-control" asp-for="Id" />
+
+    <label asp-for="Name">RoleName</label>
+    <input type="text" class="form-control" asp-for="Name" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+
+    <br />
+    <br />
+
+    <center>
+        <input type="submit" value="Save" class="btn btn-block btn-primary" />
+        <a asp-action="AddRemoveUsers" asp-controller="Roles" asp-route-RoleId="@Model.Id" class="btn btn-block btn-warning">Add Or Remove Users Wth Role</a>
+    </center>
+
+
+</form>
+@section ClientValidation{
+    <script src="~/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    @*Ajax Code*@
+    <script>
+        $(function () {
+            $("#CountryId").change(function () {
+
+                var countryId = $("#CountryId option:selected").val();
+                $("#CityId").empty();
+                $("#CityId").append("<option>choose City</option>")
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Emp/GetCityByCountryId",
+                    data: { cntryid: countryId },
+                    success: function (res) {
+                        $.each(res, function (i, e) {
+                            $("#CityId").append("<option value='" + e.Id + "'> " + e.CityName + " </option>");
+                        });
+                    }
+                });
+
+            });
+
+
+            $("#CityId").change(function () {
+
+                var CityID = $("#CityId option:selected").val();
+                $("#DistrictId").empty();
+                $("#DistrictId").append("<option>choose District</option>")
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Emp/GetDistrictByCityId",
+                    data: { ctyid: CityID },
+                    success: function (res) {
+                        $.each(res, function (i, e) {
+                            $("#DistrictId").append("<option value='" + e.Id + "'> " + e.DistrictName + " </option>");
+                        });
+                    }
+                });
+
+            });
+
+        });
+    </script>
+
+}
+

@@ -1,0 +1,69 @@
+﻿@model webApp00.BL.Model.EmployeeVM
+@{
+    ViewData["Title"] = SharedLocalizer["Details"];
+}
+
+<h2>Details</h2>
+
+
+<br />
+<a asp-action="Index" asp-controller="Emp" class="btn btn-primary">@SharedLocalizer["bte"]</a>
+<a asp-action="Edit" asp-controller="Emp" asp-route-Id="@Model.Id" class="btn btn-success">@SharedLocalizer["Edit"]</a>
+
+<br />
+<br />
+
+<form class="form-group" asp-action="Details" asp-controller="Emp">
+
+    <br /><br />
+          <label asp-for="Id"> @SharedLocalizer["Id"] </label>
+    <input type="text" asp-for="Id" disabled />
+
+    <br />
+    <label asp-for="EmployeeName">@SharedLocalizer["en"]</label>
+    <input type="text" asp-for="EmployeeName" disabled />
+
+    <br />
+
+    <label asp-for="Salary">@SharedLocalizer["es"]</label>
+    <input type="text" asp-for="Salary" disabled />
+
+    <br />
+    <label asp-for="Email">@SharedLocalizer["ee"]</label>
+    <input type="text" asp-for="Email" disabled />
+
+    <br />
+
+    <label asp-for="HireDate">@SharedLocalizer["ehd"]</label>
+    <input type="text" class="form-control" asp-for="HireDate" disabled />
+
+    <br />
+    <label asp-for="Notes">@SharedLocalizer["eNotes"]</label>
+    <textarea class="form-control" asp-for="Notes" disabled></textarea>
+    @*<input type="text" asp-for="Notes" disabled />*@
+
+    <br />
+    @*<label asp-for="IsAcive">Employee Activation</label>
+        <input type="text" asp-for="IsAcive" disabled />*@
+    <div class=" demo-checkbox">
+        <input type="checkbox" asp-for="IsAcive" checked="" disabled />
+        <label asp-for="IsAcive">@SharedLocalizer["ea"]</label>
+    </div>
+
+    <br />
+    @*<label asp-for="Department.DepartmentName">Employee Department Name</label>
+        <input type="text" asp-for="Department.DepartmentName" disabled />*@
+
+    @*Department is dropdown that choose the last choosen one*@
+
+<label asp-for="EmployeeName">@SharedLocalizer["Department"]</label>
+    <select asp-for="DepartmentId" asp-items="(SelectList)ViewBag.DprtmntList" disabled></select>
+    <br />
+    <label asp-for="DistrictId">@SharedLocalizer["District"]</label>
+    <select asp-for="DistrictId" asp-items="(SelectList)ViewBag.DistrictList" disabled></select>
+
+</form>
+@section ClientValidation{
+    <script src="~/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
